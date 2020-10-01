@@ -42,7 +42,64 @@ axios.get('https://api.github.com/users/DavidHall-Code')
 */
 
 
+const followersArray = ['tetondan', 'dustinmyers', 'justsml', 'luishrd', 'bigknell'];
 
+followersArray.forEach(i => {
+  const newLocal = 'https://api.github.com/users/';
+    axios.get(newLocal + [i])
+    .then((response) => {
+      const aNewCard = gitCard(response.data)
+      entryPoint.appendChild(aNewCard)
+      })
+  .catch((err) => {
+      console.log(err);
+    })
+  })
+
+
+function gitCard(data){
+
+  //Define Element
+  //Card
+  let newCard = document.createElement('div');
+
+  //Image
+  let newImage = document.createElement('img');
+  //Card Info
+  let newInfo = document.createElement('div');
+  //Name {users name}
+  let newName = document.createElement('h3');
+  //UserName {users user name}
+  let newUserName = document.createElement('p');
+  //Location {users location}
+  let newLocation = document.createElement('p');
+  //Profile
+  let newProfile = document.createElement('p');
+  //Followers
+  let newFollowers = document.createElement('p');
+  //Following
+  let newFollowing = document.createElement('p');
+
+  //Bio {users bio}
+  let newBio = document.createElement('p');
+  let newA = document.createElement('a');
+
+  //Set Structure of Elements (appendChild)
+  newCard.appendChild(newImage);
+  newCard.appendChild(newInfo);
+  newInfo.appendChild(newName);
+  newInfo.appendChild(newUserName);
+  newInfo.appendChild(newLocation);
+
+  newInfo.appendChild(newProfile);
+  newProfile.textContent =  `Profile: ${data.html_url}`;
+  newProfile.appendChild(newA);
+
+  newInfo.appendChild(newFollowers);
+  newInfo.appendChild(newFollowing);
+  newInfo.appendChild(newBio);
+
+  
 
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
