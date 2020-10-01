@@ -99,7 +99,30 @@ function gitCard(data){
   newInfo.appendChild(newFollowing);
   newInfo.appendChild(newBio);
 
+  //Set Class
+  //Card
+  newCard.classList.add('card');
+  //Card Info
+  newInfo.classList.add('card-info');
+  //Name
+  newName.classList.add('name');
+  //UserName
+  newUserName.classList.add('username');
+
+  //Set Content
+  newImage.setAttribute('src', data.avatar_url);
+  // newInfo.textContent =  ;
+  newName.textContent = `${data.name}`;
+  newUserName.textContent = data.login;
+  newLocation.textContent = data.location;
   
+  newFollowers.textContent = `Followers: ${data.followers}`;
+  newFollowing.textContent = `Following: ${data.following}`;
+  newBio.textContent = `Bio: ${data.bio}`;
+
+  return newCard
+
+}
 
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
